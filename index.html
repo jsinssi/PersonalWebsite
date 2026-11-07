@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liam Butler | Portfolio</title>
+  <meta name="description" content="Liam Butler: Intelligent Systems Engineering graduate (MTU Cork) working across edge AI, embedded systems and software." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Apply saved theme before paint to avoid a flash
+    try {
+      const t = localStorage.getItem("theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#coursework">Coursework</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="home" class="hero">
+      <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-fade" aria-hidden="true"></div>
+      <div class="hud" aria-hidden="true">
+        <span class="hud-corner tl"></span><span class="hud-corner tr"></span>
+        <span class="hud-corner bl"></span><span class="hud-corner br"></span>
+      </div>
+      <div class="scene-tabs" id="scene-tabs" role="group" aria-label="Choose a project animation"></div>
+      <div class="container hero-inner">
+        <p class="eyebrow"><span class="eyebrow-line"></span>Intelligent Systems Engineer</p>
+        <h1>Liam Butler<span class="accent-dot">.</span></h1>
+        <p class="hero-role mono">
+          <span class="prompt">&gt;</span> building <span class="role" id="role">edge AI</span><span class="caret"></span>
+        </p>
+        <p class="hero-text">
+          Intelligent Systems Engineering graduate from MTU Cork. I build things where hardware,
+          software and AI meet.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View my work <span aria-hidden="true">&rarr;</span></a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          <ul class="socials">
+            <li><a href="https://www.linkedin.com/in/liambut1er" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>
+            </a></li>
+            <li><a href="mailto:liam@liambutler.org" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            </a></li>
+          </ul>
+        </div>
+      </div>
+      <a href="#stats" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section id="stats" class="stats" aria-label="Highlights">
+      <div class="container stats-grid">
+        <a class="stat" href="#education"><span class="stat-num">2:1</span><span class="stat-label">Honours degree in Intelligent Systems Engineering</span></a>
+        <a class="stat" href="#projects"><span class="stat-num" data-count="82" data-suffix="%">82%</span><span class="stat-label">Grade for my drone final year project</span></a>
+        <a class="stat" href="#coursework"><span class="stat-num" data-count="10">10</span><span class="stat-label">Projects and coursework pieces on this site</span></a>
+        <a class="stat" href="#projects"><span class="stat-num" data-count="2">2</span><span class="stat-label">MTU Prize for Innovation awards</span></a>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>01.</span> About Me</h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              Hello! I'm <strong>Liam</strong>, an engineer from Tramore, Co. Waterford, with a
+              B.Eng. (Hons) in <strong>Intelligent Systems Engineering</strong> from
+              <strong>MTU Cork</strong> (2:1, 2026).
+            </p>
+            <p>
+              I want to build technology that makes a real difference to people's lives: smart
+              systems that see, sense and decide for themselves, and products that help people
+              when they need it most. That's what drew me to putting AI on a drone to take the
+              hassle out of parking, and to designing a neck support for people living with MND.
+            </p>
+            <p>
+              At <strong>Stryker</strong> I was the main UX designer for a new medical device, and at
+              <strong>Boston Scientific</strong> I tested components. Both showed me how much careful
+              engineering matters when people depend on what you build.
+            </p>
+            <p>
+              I'm looking for roles in <strong>embedded systems</strong>, <strong>IoT</strong>,
+              <strong>computer vision</strong>, <strong>machine learning</strong>, and
+              <strong>systems or test engineering</strong>, where I can keep learning from great
+              engineers and take ideas from a prototype to something people use every day.
+            </p>
+            <p>
+              My interests are hiking, surfing, cooking something new and watching films. I love to
+              travel and have done a good bit of it solo, including Thailand, Australia, New Zealand
+              and Japan.
+            </p>
+            <a href="https://www.linkedin.com/in/liambut1er" class="btn btn-ghost" target="_blank" rel="noopener">View my LinkedIn</a>
+          </div>
+          <div class="about-photo reveal">
+            <img src="assets/graduation.jpg" alt="Liam Butler in graduation cap and gown" width="1600" height="2000" />
+          </div>
+        </div>
+        <figure class="about-wide reveal">
+          <img src="assets/whale-shark.jpg" alt="Liam snorkelling alongside a whale shark, giving a thumbs up" width="1202" height="1146" loading="lazy" />
+          <figcaption>Me snorkelling with a whale shark.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>02.</span> Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <h3>Programming</h3>
+            <ul class="tags">
+              <li>Python</li><li>C</li><li>C++</li><li>Verilog</li><li>Assembly</li><li>TypeScript</li><li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3>AI &amp; Machine Learning</h3>
+            <ul class="tags">
+              <li>YOLOv8</li><li>Object detection</li><li>OpenCV</li><li>pandas</li><li>NumPy</li><li>scikit-learn</li><li>Jupyter</li><li>Azure AutoML</li><li>ONNX</li><li>Hailo Dataflow Compiler</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3>Embedded &amp; Hardware</h3>
+            <ul class="tags">
+              <li>Raspberry Pi 5</li><li>Hailo-8</li><li>ESP32</li><li>Arduino</li><li>Basys3 FPGA</li><li>Vivado</li><li>PX4 / QGroundControl</li><li>I2C / SPI</li><li>MQTT</li><li>Node-RED</li><li>Grafana</li><li>Embedded Linux</li><li>Proteus</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3>Web &amp; Cloud</h3>
+            <ul class="tags">
+              <li>React</li><li>FastAPI</li><li>NiceGUI</li><li>Flask</li><li>PostgreSQL</li><li>MongoDB</li><li>InfluxDB</li><li>Docker</li><li>Azure</li><li>Git</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3>Security</h3>
+            <ul class="tags">
+              <li>Penetration testing</li><li>Kali Linux</li><li>Nmap</li><li>Metasploit</li><li>Nessus</li><li>OSINT</li><li>MITRE ATT&amp;CK</li><li>VirtualBox</li>
+            </ul>
+          </div>
+          <div class="skill-card reveal">
+            <h3>Engineering &amp; Process</h3>
+            <ul class="tags">
+              <li>Requirements definition</li><li>System &amp; integration testing</li><li>V&amp;V</li><li>Root cause analysis</li><li>SolidWorks</li><li>Fusion 360</li><li>Agile / Scrum</li><li>Jira</li><li>Confluence</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>03.</span> Projects</h2>
+
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="ml">AI &amp; ML</button>
+          <button class="filter" data-filter="embedded">Embedded &amp; IoT</button>
+          <button class="filter" data-filter="web">Web</button>
+          <button class="filter" data-filter="design">Product Design</button>
+        </div>
+
+        <!--
+          Each card can have a .gallery. Every <button> inside .gallery-thumbs is one slide:
+            data-type="image" or "video", data-src = file, data-poster = still for videos.
+          The first button is shown first. Click the main media to view it full screen.
+        -->
+        <div class="projects-grid">
+
+          <!-- SKYSPOT -->
+          <article class="project-card featured reveal" data-category="ml embedded web">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="video" data-src="assets/projects/skyspot-detection.mp4" data-poster="assets/projects/skyspot-detection-poster.jpg" data-caption="YOLOv8s detections running on real drone footage of the MTU car park">
+                  <img src="assets/projects/skyspot-detection-poster.jpg" alt="Drone footage with vehicle detections" loading="lazy" /><span class="play">▶</span>
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-drone.jpg" data-caption="The SkySpot drone">
+                  <img src="assets/projects/skyspot-drone.jpg" alt="SkySpot drone render" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-dashboard.jpg" data-caption="Live dashboard with colour-coded bay occupancy">
+                  <img src="assets/projects/skyspot-dashboard.jpg" alt="SkySpot dashboard" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-architecture.jpg" data-caption="System architecture: sensing, edge processing, cloud and application layers">
+                  <img src="assets/projects/skyspot-architecture.jpg" alt="SkySpot system architecture diagram" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-hardware.jpg" data-caption="Hardware and software stack: Pixhawk 6C, Raspberry Pi 5, Hailo AI HAT+, camera and GPS">
+                  <img src="assets/projects/skyspot-hardware.jpg" alt="SkySpot hardware and software stack" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-confusion-matrix.jpg" data-caption="Confusion matrix for the trained vehicle detector">
+                  <img src="assets/projects/skyspot-confusion-matrix.jpg" alt="Detector confusion matrix" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-assistant.jpg" data-caption="Sally, the AI parking assistant">
+                  <img src="assets/projects/skyspot-assistant.jpg" alt="SkySpot AI assistant page" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-n8n.jpg" data-caption="n8n workflows for weather, simulated occupancy and the assistant">
+                  <img src="assets/projects/skyspot-n8n.jpg" alt="n8n workflow diagrams" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Final Year Project · 82%</span>
+              </div>
+              <h3>SkySpot: Drone Car Park Occupancy</h3>
+              <p>
+                A drone that surveys MTU's Bishopstown car park and reports which spaces are free,
+                with a web and Android app that shows drivers a live map, a forecast and an AI
+                assistant. Built in a team of three.
+              </p>
+              <p class="role-line"><strong>My part:</strong> the edge AI and the occupancy algorithm.</p>
+              <ul class="project-points">
+                <li>Trained a single-class YOLOv8s detector on the VisDrone aerial dataset, exported it to ONNX and compiled it with the Hailo Dataflow Compiler for a Hailo-8 on a Raspberry Pi 5.</li>
+                <li>Wrote the Python occupancy algorithm. It projects GeoJSON-mapped bays into each frame from camera geometry and PX4 telemetry (GPS, altitude, heading), aligns them to detections with a coarse-to-fine search, and assigns each car to one bay by exclusive nearest-neighbour matching.</li>
+                <li>Rejected unusable frames by altitude, roll, pitch and heading change, and smoothed per-bay results with an exponential moving average that resets on turns.</li>
+                <li>Validated on five real flights; the final version identified 5 of 5 target vacant spaces.</li>
+              </ul>
+              <ul class="project-tech"><li>Python</li><li>YOLOv8s</li><li>OpenCV</li><li>ONNX</li><li>Hailo-8</li><li>Raspberry Pi 5</li><li>PX4</li><li>React</li><li>FastAPI</li><li>Azure</li></ul>
+            </div>
+            <div class="project-body project-extra">
+              <p class="role-line"><strong>The rest of the system:</strong></p>
+              <ul class="project-points">
+                <li>Holybro X500 V2 frame with a Pixhawk 6C flight controller and M10 GPS, flying repeatable waypoint missions planned in QGroundControl.</li>
+                <li>React and FastAPI web app with a native Android app, deployed as a Docker image on Azure Container Apps.</li>
+                <li>Occupancy forecast trained in Azure AutoML on about 26,000 hourly records with time, weather and calendar features (R² 0.984).</li>
+                <li>"Sally", an Azure OpenAI assistant driven by n8n workflows, answers questions like "How many bays are free right now?"</li>
+                <li>Accessibility settings for text size, readable fonts and colour-vision filters.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- HEADSTRONG -->
+          <article class="project-card reveal" data-category="design embedded">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="video" data-src="assets/projects/headstrong-worn.mp4" data-poster="assets/projects/headstrong-worn-poster.jpg" data-caption="Headstrong collar, as worn">
+                  <img src="assets/projects/headstrong-worn-poster.jpg" alt="Headstrong collar on a model" loading="lazy" /><span class="play">▶</span>
+                </button>
+                <button data-type="video" data-src="assets/projects/headstrong-collar.mp4" data-poster="assets/projects/headstrong-collar-poster.jpg" data-caption="Collar design rotation">
+                  <img src="assets/projects/headstrong-collar-poster.jpg" alt="Headstrong collar render" loading="lazy" /><span class="play">▶</span>
+                </button>
+                <button data-type="image" data-src="assets/projects/headstrong-tubes.jpg" data-caption="The ring of inflatable TPU tubes inside the collar">
+                  <img src="assets/projects/headstrong-tubes.jpg" alt="Render of a ring of upright inflatable tubes" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/headstrong-sections.jpg" data-caption="Tubes grouped into four sections (front, right, back, left) that inflate independently">
+                  <img src="assets/projects/headstrong-sections.jpg" alt="Diagram of tubes in four coloured sections" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge award">MTU Prize for Innovation · Best Pitch</span>
+              </div>
+              <h3>Headstrong: MND Neck Support</h3>
+              <p>
+                An adaptive neck support collar for people living with Motor Neurone Disease, who
+                gradually lose the neck strength to hold their head up. It won Best Pitch at the MTU
+                Prize for Innovation 2025.
+              </p>
+              <p class="role-line"><strong>My part:</strong> I came up with the idea of supporting the head with inflation, researched the materials, did the electronics and helped write and deliver the pitch.</p>
+              <ul class="project-points">
+                <li>The collar is built from a ring of inflatable tubes divided into sections: front, back, left and right. Each section inflates or deflates on its own to support the head where it is needed.</li>
+                <li>It starts with a simple self-inflating valve. As the disease progresses, a unit with an air pump takes over, so support grows with the user's needs.</li>
+                <li>From my materials research: TPU (thermoplastic polyurethane) tubes for flexibility and puncture resistance, under a Tencel cover that is soft, moisture-wicking, hypoallergenic and resistant to bacteria, which suits users who spend long periods in one position.</li>
+              </ul>
+              <ul class="project-tech"><li>Product design</li><li>Electronics</li><li>Pneumatics</li><li>Materials research</li><li>Assistive tech</li><li>Pitching</li></ul>
+            </div>
+          </article>
+
+          <!-- TROSURE -->
+          <article class="project-card reveal" data-category="design embedded">
+            <div class="gallery light">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/trosure-angle.jpg" data-caption="TroSure render: ergonomic grip and trocar assembly">
+                  <img src="assets/projects/trosure-angle.jpg" alt="TroSure trocar render, three-quarter view" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/trosure-display.jpg" data-caption="Rear view with built-in display and USB-C charging port">
+                  <img src="assets/projects/trosure-display.jpg" alt="TroSure rear view showing display" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/trosure-side.jpg" data-caption="Side profile">
+                  <img src="assets/projects/trosure-side.jpg" alt="TroSure side profile" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/trosure-left.jpg" data-caption="Left-hand view of the handle and trocar">
+                  <img src="assets/projects/trosure-left.jpg" alt="TroSure left view" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge award">MTU Prize for Innovation · Best Design</span>
+              </div>
+              <h3>Trosure: Surgical Trocar Redesign</h3>
+              <p>
+                A redesign of the surgical trocar, the instrument used to create a port into the
+                abdomen in keyhole surgery. Our team improved its ergonomics and safety mechanisms
+                so insertion force can be customised to minimise patient trauma. It won Best Design
+                at the MTU Prize for Innovation 2025.
+              </p>
+              <p class="role-line"><strong>My part:</strong> I helped with the CAD and did the electronics and software.</p>
+              <ul class="project-points">
+                <li>Built the electronics around an Arduino Uno, which measures the force applied during insertion.</li>
+                <li>Wrote the software that compares that force against a set limit and warns the surgeon if they are pushing too hard.</li>
+                <li>Helped model the handle and trocar assembly in CAD.</li>
+              </ul>
+              <ul class="project-tech"><li>Arduino Uno</li><li>C++</li><li>Electronics</li><li>CAD</li><li>Medical devices</li><li>Product design</li></ul>
+            </div>
+          </article>
+
+          <!-- PETWATCH -->
+          <article class="project-card reveal" data-category="embedded">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/petwatch-dog.jpg" data-caption="Coco, my friend's dog, putting PetWatch to the test">
+                  <img src="assets/projects/petwatch-dog.jpg" alt="Coco the dog beside the PetWatch feeder" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/petwatch-build.jpg" data-caption="The 3D-printed build: front with ultrasonic sensor, hopper with DHT and level sensors, and the wiring on the back">
+                  <img src="assets/projects/petwatch-build.jpg" alt="PetWatch front, inside and back views" loading="lazy" />
+                </button>
+                <button data-type="video" data-src="assets/projects/petwatch-schedule.mp4" data-poster="assets/projects/petwatch-schedule-poster.jpg" data-caption="Creating a feeding schedule in the PetWatch web app">
+                  <img src="assets/projects/petwatch-schedule-poster.jpg" alt="PetWatch feed schedule app" loading="lazy" /><span class="play">▶</span>
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Third Year Project · 78%</span>
+              </div>
+              <h3>PetWatch: IoT Pet Feeder</h3>
+              <p>
+                An automatic pet feeder with remote monitoring, built in a team of three.
+              </p>
+              <p class="role-line"><strong>My part:</strong> the camera and sensors.</p>
+              <ul class="project-points">
+                <li>Read temperature and humidity from DHT sensors and food and water levels from ultrasonic sensors.</li>
+                <li>Integrated an ESP32 camera and sent the data over MQTT through Azure to a time-series database.</li>
+                <li>Owners set feeding times, repeats and portion sizes from a web app.</li>
+                <li>Validated the system with vets and pet care providers.</li>
+              </ul>
+              <ul class="project-tech"><li>ESP32</li><li>C</li><li>MQTT</li><li>Azure</li><li>Sensors</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COURSEWORK ============ -->
+    <section id="coursework" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>04.</span> Coursework</h2>
+        <p class="section-intro">Assignments and reports from my degree modules.</p>
+        <div class="projects-grid">
+          <!-- PENETRATION TESTING -->
+          <article class="project-card reveal">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/pentest-eternalblue.png" data-caption="MS17-010 EternalBlue against Metasploitable 3, opening a Meterpreter session">
+                  <img src="assets/projects/pentest-eternalblue.png" alt="EternalBlue exploit output in Metasploit" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/pentest-vsftpd.png" data-caption="vsftpd 2.3.4 backdoor (CVE-2011-2523) giving a root shell on Metasploitable 2">
+                  <img src="assets/projects/pentest-vsftpd.png" alt="Metasploit vsftpd backdoor exploit" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/pentest-nessus.png" data-caption="Nessus Essentials vulnerability scan of Metasploitable 2">
+                  <img src="assets/projects/pentest-nessus.png" alt="Nessus scan results" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/pentest-nmap.png" data-caption="Full TCP port scan with Nmap: 30 open ports">
+                  <img src="assets/projects/pentest-nmap.png" alt="Nmap port scan output" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/pentest-tomcat-system.png" data-caption="NT AUTHORITY\SYSTEM shell via a Tomcat Manager WAR upload, using harvested credentials">
+                  <img src="assets/projects/pentest-tomcat-system.png" alt="Windows SYSTEM shell" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Security Penetration Testing</span>
+              </div>
+              <h3>Penetration Test Report</h3>
+              <p>
+                A full penetration test in two parts: OSINT reconnaissance against a large real-world
+                organisation, then active scanning and exploitation of two vulnerable machines on an
+                isolated VirtualBox lab network.
+              </p>
+              <ul class="project-points">
+                <li><strong>Reconnaissance:</strong> passive OSINT only, using theHarvester, Sublist3r, Knockpy, WhatWeb, Recon-ng, Shodan and SpiderFoot. Mapped 180 subdomains and 112 IP addresses, mapped the findings to MITRE ATT&amp;CK and made defensive recommendations.</li>
+                <li><strong>Metasploitable 2 (Linux):</strong> scanned with Nmap and Nessus, then got root through the vsftpd 2.3.4 and UnrealIRCd backdoors and recovered <code>/etc/shadow</code>.</li>
+                <li><strong>Metasploitable 3 (Windows Server 2008 R2):</strong> SYSTEM access via EternalBlue (MS17-010). Dumped 20 NTLM hashes, then chained harvested credentials into a Tomcat Manager WAR upload for a second SYSTEM shell.</li>
+                <li>Wrote prioritised remediation for each target: patching, least privilege, MFA and secrets management.</li>
+              </ul>
+              <ul class="project-tech"><li>Kali Linux</li><li>Nmap</li><li>Nessus</li><li>Metasploit</li><li>Shodan</li><li>SpiderFoot</li><li>MITRE ATT&amp;CK</li></ul>
+            </div>
+          </article>
+
+          <!-- BOOK RECOMMENDATION (AGILE) -->
+          <article class="project-card reveal">
+            <div class="gallery light">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/book-analytics.jpg" data-caption="User analytics: ratings, wishlist size, and the genres and authors a reader likes most">
+                  <img src="assets/projects/book-analytics.jpg" alt="Book Recommendation Dashboard analytics page with stat cards and bar charts" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Agile Software Development · Team of 3</span>
+              </div>
+              <h3>Book Recommendation App</h3>
+              <p>
+                A web app that tackles "what should I read next?" by combining a user's own star
+                ratings with book metadata. We built it in Scrum sprints, and I was Scrum Master for
+                Sprint 1.
+              </p>
+              <ul class="project-points">
+                <li>NiceGUI front end with registration and login. Passwords are stored as salted PBKDF2 hashes.</li>
+                <li>Over 11,000 books in MongoDB Atlas, searchable by title or author. Genres come from the Open Library API and descriptions from Google Books, both looked up by ISBN.</li>
+                <li>I built the rating feature: star ratings with one rating per user per book, which can be edited later. Users also have a wishlist and recommendations based on the books they rated highest.</li>
+                <li>Ran the project in Jira (user stories, story points, planning poker, burndown charts), with feature branches and pull requests on GitHub.</li>
+              </ul>
+              <ul class="project-tech"><li>Python</li><li>NiceGUI</li><li>MongoDB</li><li>REST APIs</li><li>Jira</li><li>Scrum</li><li>Git</li></ul>
+            </div>
+          </article>
+
+          <!-- APP ENGAGEMENT -->
+          <article class="project-card reveal">
+            <div class="gallery light">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/engagement-segments.png" data-caption="UMAP projection of the three K-Means user segments">
+                  <img src="assets/projects/engagement-segments.png" alt="UMAP scatter plot of user segments" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/engagement-boxplots.png" data-caption="Screen time, ratings and spending compared across segments">
+                  <img src="assets/projects/engagement-boxplots.png" alt="Box plots of features by segment" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/engagement-results.png" data-caption="Classification results after SMOTE balancing: 100% recall on uninstalled users">
+                  <img src="assets/projects/engagement-results.png" alt="Classification report for logistic regression and KNN" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Individual project</span>
+              </div>
+              <h3>App User Engagement &amp; Churn Prediction</h3>
+              <p>
+                Analysed mobile app usage data to find out which users the app keeps and which it loses.
+              </p>
+              <ul class="project-points">
+                <li>Segmented users with K-Means and DBSCAN into three groups: Retained, Needs Attention and Churn.</li>
+                <li>Balanced a heavily skewed dataset with SMOTE, then trained logistic regression and KNN classifiers that reached 100% recall on users who uninstalled.</li>
+                <li>Wrote a report with recommendations for targeted retention campaigns.</li>
+              </ul>
+              <ul class="project-tech"><li>Python</li><li>scikit-learn</li><li>K-Means</li><li>SMOTE</li><li>UMAP</li></ul>
+            </div>
+          </article>
+
+          <!-- EDGE-CLOUD REPLICATION -->
+          <article class="project-card reveal">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/replication-edge-login.png" data-caption="Offline login SPA running on the Raspberry Pi against the replicated users table">
+                  <img src="assets/projects/replication-edge-login.png" alt="NiceGUI login page" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/replication-nicegui-code.png" data-caption="The NiceGUI login app, developed over SSH on the Pi">
+                  <img src="assets/projects/replication-nicegui-code.png" alt="VS Code with NiceGUI login code" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/replication-influx.png" data-caption="Telegraf health data (CPU temperature, service ports) in InfluxDB">
+                  <img src="assets/projects/replication-influx.png" alt="InfluxDB data explorer graph" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Assignments + final project</span>
+              </div>
+              <h3>Raspberry Pi Edge-to-Cloud IoT</h3>
+              <p>
+                A series of IoT labs that collect, process and sync data between Raspberry Pis at the
+                edge and the cloud.
+              </p>
+              <ul class="project-points">
+                <li><strong>Sensor monitoring:</strong> IOTstack (Docker) on two Pis, with DHT11 temperature and humidity readings going over MQTT into PostgreSQL and InfluxDB, and Node-RED, Flask and Grafana on top. Fast temperature alarms (&gt;50 °C within 100 ms) run at the edge, and sustained-humidity warnings run in the cloud.</li>
+                <li><strong>InfluxDB:</strong> Telegraf logs Pi health data (CPU temperature, Mosquitto and Node-RED status) to a local InfluxDB, which replicates it to Azure InfluxDB SaaS.</li>
+                <li><strong>PostgreSQL:</strong> logical replication of a users table from a cloud database to the Pi.</li>
+                <li><strong>Final project:</strong> two NiceGUI single-page apps. One is a user management app (insert, update, soft and hard delete) hosted on Azure Container Apps. The other is an offline login app on the Pi that launches in Chromium kiosk mode at boot through systemd.</li>
+              </ul>
+              <ul class="project-tech"><li>Raspberry Pi</li><li>Docker</li><li>MQTT</li><li>Node-RED</li><li>Grafana</li><li>PostgreSQL</li><li>InfluxDB</li><li>NiceGUI</li><li>Azure</li></ul>
+            </div>
+          </article>
+
+          <!-- HVAC ML -->
+          <article class="project-card reveal">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/hvac-correlation.png" data-caption="Pearson correlation matrix of the HVAC sensor features">
+                  <img src="assets/projects/hvac-correlation.png" alt="Correlation matrix heatmap" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/hvac-fault-power.png" data-caption="Power draw during normal operation versus fault states">
+                  <img src="assets/projects/hvac-fault-power.png" alt="Histogram of power for fault vs normal" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">Assignment · 4 notebooks</span>
+              </div>
+              <h3>HVAC IoT Machine Learning</h3>
+              <p>
+                Notebooks analysing HVAC IoT sensor data loaded from PostgreSQL. I started with
+                exploratory analysis, then built linear and logistic regression, tree-based models
+                and an MLP neural network to predict fault state, energy use and comfort.
+              </p>
+              <ul class="project-tech"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>PostgreSQL</li><li>Jupyter</li></ul>
+            </div>
+          </article>
+
+          <!-- FPGA -->
+          <article class="project-card reveal">
+            <div class="gallery">
+              <div class="gallery-main"></div>
+              <div class="gallery-thumbs">
+                <button data-type="image" data-src="assets/projects/fpga-block-diagram.jpg" data-caption="Top-level block diagram of the platform">
+                  <img src="assets/projects/fpga-block-diagram.jpg" alt="FPGA platform block diagram" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/fpga-input-subsystem.png" data-caption="My input subsystem: keypad scanner and joystick SPI master behind one wrapper">
+                  <img src="assets/projects/fpga-input-subsystem.png" alt="Input subsystem block diagram" loading="lazy" />
+                </button>
+              </div>
+              <p class="gallery-caption"></p>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <span class="badge">HDL Digital System Design</span>
+              </div>
+              <h3>Basys3 Video Game Platform</h3>
+              <p>
+                A team of three built an FPGA hardware platform for video games on the Basys3 board,
+                written in Verilog. It has 640×480 VGA output, keypad and joystick input, settings
+                saved to serial NOR flash, and a clean game-module interface so new games can plug
+                in without hardware changes.
+              </p>
+              <ul class="project-points">
+                <li>I owned the input subsystem: a custom SPI master for the Pmod JSTK2 joystick and a scanning FSM for the 16-button Pmod KYPD keypad.</li>
+                <li>Wrapped both behind one interface that gives the rest of the system stable, debounced and synchronised signals.</li>
+              </ul>
+              <ul class="project-tech"><li>Verilog</li><li>Vivado</li><li>Basys3</li><li>SPI</li><li>VGA</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <dialog class="lightbox" id="lightbox" aria-label="Media viewer">
+      <button class="lightbox-close" aria-label="Close">×</button>
+      <div class="lightbox-content"></div>
+      <p class="lightbox-caption"></p>
+    </dialog>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>05.</span> Experience</h2>
+        <ol class="timeline">
+          <li class="reveal">
+            <span class="date">Mar 2025 – Aug 2025</span>
+            <h3>Software Co-Op</h3>
+            <p class="where">Stryker (Surgical Technologies) · Carrigtwohill, Co. Cork</p>
+            <p>
+              Main UX designer for a new medical device, designing its touchscreen interface and
+              developing the GUI software in C++ in a multidisciplinary team. Helped define requirements, then wrote and executed system and integration tests.
+              Tracked work in Jira and managed changes with Git.
+            </p>
+          </li>
+          <li class="reveal">
+            <span class="date">May 2024 – Aug 2024</span>
+            <h3>Summer Intern</h3>
+            <p class="where">Boston Scientific · Clonmel, Co. Tipperary</p>
+            <p>
+              Tested and validated electronic components such as relays with a team of engineers,
+              working to cleanroom protocols. Wrote weekly test reports for management covering
+              components salvaged and cost savings.
+            </p>
+          </li>
+          <li class="reveal">
+            <span class="date">2021 – 2023</span>
+            <h3>Checkout Assistant</h3>
+            <p class="where">SuperValu · Tramore, Co. Waterford</p>
+            <p>
+              Served customers and handled cash, including the cash safe. Supervised a checkout team
+              of up to six and trained new staff.
+            </p>
+          </li>
+          <li class="reveal">
+            <span class="date">2020 – 2021</span>
+            <h3>Council Worker</h3>
+            <p class="where">Waterford City &amp; County Council · Tramore, Co. Waterford</p>
+            <p>
+              Litter picking in designated areas around Tramore, following safety procedures.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>06.</span> Education</h2>
+        <ol class="timeline">
+          <li class="reveal">
+            <span class="date">2022 – 2026</span>
+            <h3>B.Eng. (Hons) Intelligent Systems Engineering</h3>
+            <p class="where">Munster Technological University, Cork</p>
+            <p>Second Class Honours, Grade 1 (2:1). Final year project SkySpot: 82%.</p>
+          </li>
+          <li class="reveal">
+            <span class="date">2021</span>
+            <h3>Leaving Certificate</h3>
+            <p class="where">Ardscoil na Mara, Tramore</p>
+            <p>498 points, including an H2 in Technology and Design &amp; Communication Graphics.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section contact">
+      <div class="container contact-inner reveal">
+        <h2 class="section-title center"><span>07.</span> Get In Touch</h2>
+        <p>
+          If you have an opportunity or a question, or just want to say hi, get in touch by email
+          or on LinkedIn.
+        </p>
+        <ul class="contact-links">
+          <li><a href="mailto:liam@liambutler.org">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+            liam@liambutler.org
+          </a></li>
+          <li><a href="https://www.linkedin.com/in/liambut1er" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>
+            linkedin.com/in/liambut1er
+          </a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p><a href="mailto:liam@liambutler.org">liam@liambutler.org</a></p>
+    </div>
+  </footer>
+
+  <script src="hero.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
