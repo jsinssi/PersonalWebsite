@@ -732,3 +732,30 @@ html, body { overflow-x: clip; }
   .scene-tabs button { flex: 1 0 auto; min-width: 0; padding: 6px 8px 7px; font-size: 0.7rem; }
   .hud-corner.tl, .hud-corner.tr { display: none; }
 }
+
+/* ============ MOBILE: no top bar, floating light/dark button ============ */
+@media (max-width: 768px) {
+  .nav {
+    position: fixed; top: auto; left: auto; right: 16px; bottom: 16px;
+    background: none; backdrop-filter: none; -webkit-backdrop-filter: none;
+    border: none; pointer-events: none;
+  }
+  .nav .container { width: auto; padding: 0; margin: 0; }
+  .nav-inner { height: auto; }
+  .nav nav, .menu-btn { display: none !important; }
+  .nav #theme-toggle {
+    pointer-events: auto;
+    width: 48px; height: 48px; padding: 0; border-radius: 50%;
+    background: color-mix(in srgb, var(--card) 85%, transparent);
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .nav #theme-toggle:hover { border-color: var(--accent); }
+}
+@media (max-width: 600px) {
+  /* Leave room for the floating light/dark button beside the scene tabs */
+  .scene-tabs { right: 76px; bottom: 16px; }
+  .scene-tabs button { padding: 6px 6px 7px; font-size: 0.66rem; }
+  .hero { padding-top: 3rem; }
+}
