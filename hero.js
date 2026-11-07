@@ -25,7 +25,9 @@
   }
 
   // Area on the right of the hero where scenes draw (text sits on the left)
+  let stageTop = 0; // phones: top of the animation area, below the hero text
   function region() {
+    if (W <= 600) return { x: 16, y: stageTop, w: W - 32, h: Math.max(200, H - stageTop - 70) };
     const narrow = W < 900;
     const x = narrow ? 16 : W * 0.46;
     const y = narrow ? 80 : 150;
@@ -642,6 +644,9 @@
     const r = hero.getBoundingClientRect();
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = r.width; H = r.height;
+    const inner = hero.querySelector(".hero-inner");
+    stageTop = inner ? inner.getBoundingClientRect().bottom - r.top + 20 : H * 0.55;
+    hero.style.setProperty("--stage-top", stageTop + "px");
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -656,7 +661,15 @@
   new IntersectionObserver((e) => (e[0].isIntersecting ? start() : stop()), { threshold: 0 }).observe(hero);
   document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
   let rt;
-  addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { resize(); if (!running) frame(now); }, 150); });
+  let lastW = W;
+  addEventListener("resize", () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      const r = hero.getBoundingClientRect();
+      if (r.width === lastW && Math.abs(r.height - H) < 2) return;
+      lastW = r.width; resize(); if (!running) frame(now);
+    }, 150);
+  });
   new MutationObserver(() => { readColors(); if (!running) frame(now); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", readColors);

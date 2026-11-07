@@ -664,8 +664,10 @@ a.stat:hover .stat-label { color: var(--text); }
 }
 
 /* ============ CONTENT UPDATE: 4 stats, 6 skill cards, role lines ============ */
-.stats-grid { grid-template-columns: repeat(4, 1fr); }
-.skills-grid { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 901px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .skills-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   .stat:last-child { grid-column: auto; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
@@ -704,3 +706,29 @@ a.stat:hover .stat-label { color: var(--text); }
 }
 .contact-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 .contact-links svg { color: var(--accent); flex-shrink: 0; }
+
+/* Never allow sideways page drag on phones */
+html, body { overflow-x: clip; }
+
+/* ============ MOBILE HERO: text on top, animation stage below ============ */
+@media (max-width: 600px) {
+  .hero {
+    display: block; min-height: 0;
+    padding: 2.25rem 0 calc(min(88vw, 360px) + 70px);
+  }
+  .hero-fade {
+    background:
+      linear-gradient(180deg,
+        var(--bg) 0,
+        color-mix(in srgb, var(--bg) 90%, transparent) calc(var(--stage-top, 60%) - 40px),
+        color-mix(in srgb, var(--bg) 0%, transparent) calc(var(--stage-top, 60%) + 10px)),
+      linear-gradient(0deg, var(--bg) 0, transparent 70px);
+  }
+  .scene-tabs {
+    display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    left: 16px; right: 16px; bottom: 18px; justify-content: space-between; gap: 6px;
+  }
+  .scene-tabs::-webkit-scrollbar { display: none; }
+  .scene-tabs button { flex: 1 0 auto; min-width: 0; padding: 6px 8px 7px; font-size: 0.7rem; }
+  .hud-corner.tl, .hud-corner.tr { display: none; }
+}
