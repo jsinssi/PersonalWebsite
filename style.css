@@ -759,3 +759,87 @@ html, body { overflow-x: clip; }
   .scene-tabs button { padding: 6px 6px 7px; font-size: 0.66rem; }
   .hero { padding-top: 3rem; }
 }
+.team-line { margin-top: 0.75rem; font-size: 0.88rem !important; }
+@media (min-width: 900px) {
+  .project-card.featured { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .project-card.featured > * { min-width: 0; }
+}
+.part-head {
+  margin: 1.1rem 0 0.2rem; font-family: var(--display); font-size: 1rem; font-weight: 600;
+  color: var(--accent); padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
+}
+.sub-head {
+  margin: 0.9rem 0 0.1rem; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--text);
+}
+.project-extra .sub-head:first-child { margin-top: 0; }
+.team-line { margin-top: 0.4rem; }
+
+/* SkySpot card: title + my part on the right, gallery + overview on the left */
+.project-card.featured .sky-head { padding-bottom: 0; flex: none; }
+.project-card.featured .sky-head h3 { margin-bottom: 0; }
+.project-card.featured .sky-part .part-head { margin-top: 0; }
+.project-card.featured .sky-part { padding-top: 1rem; }
+@media (min-width: 900px) {
+  .project-card.featured {
+    grid-template-areas: "gallery head" "gallery part" "extra part";
+    grid-template-rows: auto auto 1fr;
+  }
+  .project-card.featured > .project-body.sky-head { grid-area: head; border-left: 1px solid var(--border); }
+  .project-card.featured > .project-body.sky-part { grid-area: part; border-left: 1px solid var(--border); }
+}
+/* Phone order for the SkySpot card: pictures, title, overview, then my part */
+.project-card.featured > .gallery { order: 0; }
+.project-card.featured > .sky-head { order: 1; }
+.project-card.featured > .project-extra { order: 2; border-top: none; padding-top: 0.75rem; }
+.project-card.featured > .sky-part { order: 3; }
+.project-card.featured .project-extra .project-tech { margin-top: 1rem; }
+@media (min-width: 900px) {
+  .project-card.featured > .project-extra { border-top: 1px solid var(--border); padding-top: 1.75rem; }
+}
+
+/* Gallery thumbnail scrollbar: thin, rounded, in the site's colours */
+.gallery-thumbs {
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 55%, transparent) transparent;
+}
+.gallery-thumbs::-webkit-scrollbar { height: 6px; }
+.gallery-thumbs::-webkit-scrollbar-track { background: transparent; }
+.gallery-thumbs::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: 999px;
+}
+.gallery-thumbs::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.gallery-thumbs:hover { scrollbar-color: var(--accent) transparent; }
+
+/* ============ CARD ALIGNMENT: cards in a row share gallery, badge, title and text rows ============ */
+@supports (grid-template-rows: subgrid) {
+  .projects-grid > .project-card:not(.featured) {
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .projects-grid > .project-card:not(.featured) > .gallery { grid-row: 1; align-self: stretch; }
+  .projects-grid > .project-card:not(.featured) > .project-body {
+    grid-row: 2 / span 3;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+    gap: 0;
+  }
+  .projects-grid > .project-card:not(.featured) .project-top { align-self: start; }
+  .projects-grid > .project-card:not(.featured) .project-body > h3 { align-self: start; }
+}
+.project-rest { display: flex; flex-direction: column; }
+.project-rest > .project-tech { margin-top: auto; padding-top: 1rem; }
+
+/* SkySpot headings use the same heading font as card titles */
+.part-head { font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--text); }
+.sub-head {
+  font-family: var(--display); font-size: 0.95rem; font-weight: 600;
+  letter-spacing: normal; text-transform: none; color: var(--accent);
+}

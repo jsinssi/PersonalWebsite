@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=15" />
   <script>
     // Apply saved theme before paint to avoid a flash
     try {
@@ -163,7 +163,7 @@
           <div class="skill-card reveal">
             <h3>Web &amp; Cloud</h3>
             <ul class="tags">
-              <li>React</li><li>FastAPI</li><li>NiceGUI</li><li>Flask</li><li>PostgreSQL</li><li>MongoDB</li><li>InfluxDB</li><li>Docker</li><li>Azure</li><li>Git</li>
+              <li>React</li><li>FastAPI</li><li>NiceGUI</li><li>Flask</li><li>PostgreSQL / PostGIS</li><li>n8n</li><li>Azure OpenAI</li><li>MongoDB</li><li>InfluxDB</li><li>Docker</li><li>Azure</li><li>Git</li>
             </ul>
           </div>
           <div class="skill-card reveal">
@@ -210,11 +210,17 @@
                 <button data-type="video" data-src="assets/projects/skyspot-detection.mp4" data-poster="assets/projects/skyspot-detection-poster.jpg" data-caption="YOLOv8s detections running on real drone footage of the MTU car park">
                   <img src="assets/projects/skyspot-detection-poster.jpg" alt="Drone footage with vehicle detections" loading="lazy" /><span class="play">▶</span>
                 </button>
+                <button data-type="image" data-src="assets/projects/skyspot-occupancy-frame.jpg" data-caption="Occupancy output from a real flight: vehicle detections with each mapped bay marked occupied or free">
+                  <img src="assets/projects/skyspot-occupancy-frame.jpg" alt="Aerial car park frame with vehicle detections and bay markers" loading="lazy" />
+                </button>
                 <button data-type="image" data-src="assets/projects/skyspot-drone.jpg" data-caption="The SkySpot drone">
                   <img src="assets/projects/skyspot-drone.jpg" alt="SkySpot drone render" loading="lazy" />
                 </button>
                 <button data-type="image" data-src="assets/projects/skyspot-dashboard.jpg" data-caption="Live dashboard with colour-coded bay occupancy">
                   <img src="assets/projects/skyspot-dashboard.jpg" alt="SkySpot dashboard" loading="lazy" />
+                </button>
+                <button data-type="image" data-src="assets/projects/skyspot-forecast-model.jpg" data-caption="Azure AutoML forecast model: predicted against true occupancy (R² 0.984)">
+                  <img src="assets/projects/skyspot-forecast-model.jpg" alt="Predicted versus true occupancy chart" loading="lazy" />
                 </button>
                 <button data-type="image" data-src="assets/projects/skyspot-architecture.jpg" data-caption="System architecture: sensing, edge processing, cloud and application layers">
                   <img src="assets/projects/skyspot-architecture.jpg" alt="SkySpot system architecture diagram" loading="lazy" />
@@ -234,34 +240,38 @@
               </div>
               <p class="gallery-caption"></p>
             </div>
-            <div class="project-body">
+            <div class="project-body sky-head">
               <div class="project-top">
                 <span class="badge">Final Year Project · 82%</span>
               </div>
               <h3>SkySpot: Drone Car Park Occupancy</h3>
-              <p>
-                A drone that surveys MTU's Bishopstown car park and reports which spaces are free,
-                with a web and Android app that shows drivers a live map, a forecast and an AI
-                assistant. Built in a team of three.
-              </p>
-              <p class="role-line"><strong>My part:</strong> the edge AI and the occupancy algorithm.</p>
+            </div>
+            <div class="project-body sky-part">
+              <h4 class="part-head">My part</h4>
+              <h5 class="sub-head">Edge AI on the drone</h5>
               <ul class="project-points">
-                <li>Trained a single-class YOLOv8s detector on the VisDrone aerial dataset, exported it to ONNX and compiled it with the Hailo Dataflow Compiler for a Hailo-8 on a Raspberry Pi 5.</li>
-                <li>Wrote the Python occupancy algorithm. It projects GeoJSON-mapped bays into each frame from camera geometry and PX4 telemetry (GPS, altitude, heading), aligns them to detections with a coarse-to-fine search, and assigns each car to one bay by exclusive nearest-neighbour matching.</li>
-                <li>Rejected unusable frames by altitude, roll, pitch and heading change, and smoothed per-bay results with an exponential moving average that resets on turns.</li>
-                <li>Validated on five real flights; the final version identified 5 of 5 target vacant spaces.</li>
+                <li>Trained a single-class YOLOv8s vehicle detector on the VisDrone aerial dataset, exported it to ONNX and compiled it for the Hailo-8 accelerator on a Raspberry Pi 5.</li>
+                <li>Wrote the occupancy algorithm. It projects the mapped bays into each frame using camera geometry and PX4 telemetry, aligns them to the detections with a three-stage search, and matches each car to a single bay. That exclusive matching was the biggest accuracy gain in the project.</li>
+                <li>Filtered out turns and unstable frames and smoothed each bay's result over time. After five runs of tuning on real flight data, it identified 5 of 5 target vacant spaces.</li>
               </ul>
-              <ul class="project-tech"><li>Python</li><li>YOLOv8s</li><li>OpenCV</li><li>ONNX</li><li>Hailo-8</li><li>Raspberry Pi 5</li><li>PX4</li><li>React</li><li>FastAPI</li><li>Azure</li></ul>
+              <h5 class="sub-head">Cloud, forecast and app</h5>
+              <ul class="project-points">
+                <li>Designed the PostgreSQL and PostGIS database on Azure for flights, per-bay occupancy, weather, calendar data and predictions.</li>
+                <li>Built three n8n workflows: an hourly weather sync, a data refresh job and the chat agent behind the AI assistant.</li>
+                <li>Trained the occupancy forecast in Azure AutoML on about 26,000 hourly records: R² 0.984, against a course benchmark of 0.72.</li>
+                <li>Built the React and TypeScript web app with a live map, forecast, weather and a GPT-4.1 parking assistant, and deployed it with Docker on Azure Container Apps.</li>
+              </ul>
             </div>
             <div class="project-body project-extra">
-              <p class="role-line"><strong>The rest of the system:</strong></p>
-              <ul class="project-points">
-                <li>Holybro X500 V2 frame with a Pixhawk 6C flight controller and M10 GPS, flying repeatable waypoint missions planned in QGroundControl.</li>
-                <li>React and FastAPI web app with a native Android app, deployed as a Docker image on Azure Container Apps.</li>
-                <li>Occupancy forecast trained in Azure AutoML on about 26,000 hourly records with time, weather and calendar features (R² 0.984).</li>
-                <li>"Sally", an Azure OpenAI assistant driven by n8n workflows, answers questions like "How many bays are free right now?"</li>
-                <li>Accessibility settings for text size, readable fonts and colour-vision filters.</li>
-              </ul>
+              <h5 class="sub-head">Overview</h5>
+              <p class="overview">
+                A drone that scans the Barrier Car Park on MTU's Bishopstown campus and works out
+                which of its 199 mapped spaces are free, without a sensor in every bay. The results
+                feed a live web app, an occupancy forecast and an AI parking assistant.
+              </p>
+              <h5 class="sub-head">The drone</h5>
+              <p class="team-line">A Holybro X500 V2 with a Pixhawk 6C flight controller, flying repeatable missions planned in QGroundControl.</p>
+              <ul class="project-tech"><li>Python</li><li>YOLOv8s</li><li>Hailo-8</li><li>Raspberry Pi 5</li><li>PX4</li><li>PostgreSQL</li><li>n8n</li><li>Azure AutoML</li><li>React</li><li>TypeScript</li><li>Docker</li></ul>
             </div>
           </article>
 
@@ -290,6 +300,7 @@
                 <span class="badge award">MTU Prize for Innovation · Best Pitch</span>
               </div>
               <h3>Headstrong: MND Neck Support</h3>
+              <div class="project-rest">
               <p>
                 An adaptive neck support collar for people living with Motor Neurone Disease, who
                 gradually lose the neck strength to hold their head up. It won Best Pitch at the MTU
@@ -302,6 +313,7 @@
                 <li>From my materials research: TPU (thermoplastic polyurethane) tubes for flexibility and puncture resistance, under a Tencel cover that is soft, moisture-wicking, hypoallergenic and resistant to bacteria, which suits users who spend long periods in one position.</li>
               </ul>
               <ul class="project-tech"><li>Product design</li><li>Electronics</li><li>Pneumatics</li><li>Materials research</li><li>Assistive tech</li><li>Pitching</li></ul>
+              </div>
             </div>
           </article>
 
@@ -330,6 +342,7 @@
                 <span class="badge award">MTU Prize for Innovation · Best Design</span>
               </div>
               <h3>Trosure: Surgical Trocar Redesign</h3>
+              <div class="project-rest">
               <p>
                 A redesign of the surgical trocar, the instrument used to create a port into the
                 abdomen in keyhole surgery. Our team improved its ergonomics and safety mechanisms
@@ -343,6 +356,7 @@
                 <li>Helped model the handle and trocar assembly in CAD.</li>
               </ul>
               <ul class="project-tech"><li>Arduino Uno</li><li>C++</li><li>Electronics</li><li>CAD</li><li>Medical devices</li><li>Product design</li></ul>
+              </div>
             </div>
           </article>
 
@@ -368,6 +382,7 @@
                 <span class="badge">Third Year Project · 78%</span>
               </div>
               <h3>PetWatch: IoT Pet Feeder</h3>
+              <div class="project-rest">
               <p>
                 An automatic pet feeder with remote monitoring, built in a team of three.
               </p>
@@ -379,6 +394,7 @@
                 <li>Validated the system with vets and pet care providers.</li>
               </ul>
               <ul class="project-tech"><li>ESP32</li><li>C</li><li>MQTT</li><li>Azure</li><li>Sensors</li></ul>
+              </div>
             </div>
           </article>
         </div>
@@ -419,6 +435,7 @@
                 <span class="badge">Security Penetration Testing</span>
               </div>
               <h3>Penetration Test Report</h3>
+              <div class="project-rest">
               <p>
                 A full penetration test in two parts: OSINT reconnaissance against a large real-world
                 organisation, then active scanning and exploitation of two vulnerable machines on an
@@ -431,6 +448,7 @@
                 <li>Wrote prioritised remediation for each target: patching, least privilege, MFA and secrets management.</li>
               </ul>
               <ul class="project-tech"><li>Kali Linux</li><li>Nmap</li><li>Nessus</li><li>Metasploit</li><li>Shodan</li><li>SpiderFoot</li><li>MITRE ATT&amp;CK</li></ul>
+              </div>
             </div>
           </article>
 
@@ -450,6 +468,7 @@
                 <span class="badge">Agile Software Development · Team of 3</span>
               </div>
               <h3>Book Recommendation App</h3>
+              <div class="project-rest">
               <p>
                 A web app that tackles "what should I read next?" by combining a user's own star
                 ratings with book metadata. We built it in Scrum sprints, and I was Scrum Master for
@@ -462,6 +481,7 @@
                 <li>Ran the project in Jira (user stories, story points, planning poker, burndown charts), with feature branches and pull requests on GitHub.</li>
               </ul>
               <ul class="project-tech"><li>Python</li><li>NiceGUI</li><li>MongoDB</li><li>REST APIs</li><li>Jira</li><li>Scrum</li><li>Git</li></ul>
+              </div>
             </div>
           </article>
 
@@ -487,6 +507,7 @@
                 <span class="badge">Individual project</span>
               </div>
               <h3>App User Engagement &amp; Churn Prediction</h3>
+              <div class="project-rest">
               <p>
                 Analysed mobile app usage data to find out which users the app keeps and which it loses.
               </p>
@@ -496,6 +517,7 @@
                 <li>Wrote a report with recommendations for targeted retention campaigns.</li>
               </ul>
               <ul class="project-tech"><li>Python</li><li>scikit-learn</li><li>K-Means</li><li>SMOTE</li><li>UMAP</li></ul>
+              </div>
             </div>
           </article>
 
@@ -521,6 +543,7 @@
                 <span class="badge">Assignments + final project</span>
               </div>
               <h3>Raspberry Pi Edge-to-Cloud IoT</h3>
+              <div class="project-rest">
               <p>
                 A series of IoT labs that collect, process and sync data between Raspberry Pis at the
                 edge and the cloud.
@@ -532,6 +555,7 @@
                 <li><strong>Final project:</strong> two NiceGUI single-page apps. One is a user management app (insert, update, soft and hard delete) hosted on Azure Container Apps. The other is an offline login app on the Pi that launches in Chromium kiosk mode at boot through systemd.</li>
               </ul>
               <ul class="project-tech"><li>Raspberry Pi</li><li>Docker</li><li>MQTT</li><li>Node-RED</li><li>Grafana</li><li>PostgreSQL</li><li>InfluxDB</li><li>NiceGUI</li><li>Azure</li></ul>
+              </div>
             </div>
           </article>
 
@@ -554,12 +578,14 @@
                 <span class="badge">Assignment · 4 notebooks</span>
               </div>
               <h3>HVAC IoT Machine Learning</h3>
+              <div class="project-rest">
               <p>
                 Notebooks analysing HVAC IoT sensor data loaded from PostgreSQL. I started with
                 exploratory analysis, then built linear and logistic regression, tree-based models
                 and an MLP neural network to predict fault state, energy use and comfort.
               </p>
               <ul class="project-tech"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>PostgreSQL</li><li>Jupyter</li></ul>
+              </div>
             </div>
           </article>
 
@@ -582,6 +608,7 @@
                 <span class="badge">HDL Digital System Design</span>
               </div>
               <h3>Basys3 Video Game Platform</h3>
+              <div class="project-rest">
               <p>
                 A team of three built an FPGA hardware platform for video games on the Basys3 board,
                 written in Verilog. It has 640×480 VGA output, keypad and joystick input, settings
@@ -593,6 +620,7 @@
                 <li>Wrapped both behind one interface that gives the rest of the system stable, debounced and synchronised signals.</li>
               </ul>
               <ul class="project-tech"><li>Verilog</li><li>Vivado</li><li>Basys3</li><li>SPI</li><li>VGA</li></ul>
+              </div>
             </div>
           </article>
         </div>
